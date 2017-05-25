@@ -9,7 +9,7 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 <b>Documentation</b></br>
 https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit
 
-Instructions for Submitting a Dataset
+<b>Instructions for Submitting a Dataset</b></br>
 
 1.
 2.
