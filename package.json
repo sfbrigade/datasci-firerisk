@@ -1,0 +1,13 @@
+{
+  "name": "datasci-firerisk",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "async": "2.1.5",
+    "node-svm": "2.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "",
+  "license": ""
+}
