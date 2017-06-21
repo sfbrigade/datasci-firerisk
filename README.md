@@ -11,12 +11,8 @@ https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/
 
 <b>Latest Data Set File (.csv)</b></br>
 
-Can be found in /addresses/ folder or downloaded at:
+Can be found in <i>/addresses/</i> folder or downloaded at:
 https://drive.google.com/file/d/0B7ce50Tgcva8RnBEU2VTVVlkLWM/view?usp=sharing
-
-<b>lib</b> folder contains the model for risk assessment.
-
-<b>address_matching</b> is a prototype Python script that does inexact/fuzzy matching of street address strings to a standardized format.
 
 <b>Instructions for Submitting a Dataset</b></br>
 
@@ -33,3 +29,9 @@ We are always looking to improve the robustness of our prediction model, so we a
 - The Rest: Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
 
 4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Contact @ryangtanaka for more details.
+
+<b>About the Repository</b></br>
+
+<i>/lib/</i> folder contains the model for risk assessment.
+
+<i>address_matching</i> is a prototype Python script that does inexact/fuzzy matching of street address strings to a standardized format.
