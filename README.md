@@ -11,7 +11,7 @@ https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/
 
 <b>Latest Data Set File (.csv)</b></br>
 
-Can be found in <i>/addresses/</i> folder or downloaded at:
+Can be found in the <i>/addresses/</i> folder or downloaded at:
 https://drive.google.com/file/d/0B7ce50Tgcva8RnBEU2VTVVlkLWM/view?usp=sharing
 
 <b>Instructions for Submitting a Dataset</b></br>
