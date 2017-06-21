@@ -28,7 +28,7 @@ We are always looking to improve the robustness of our prediction model, so we a
 - First Column: EAS BaseID and/or CNN [So we can match address data to our model.]
 - The Rest: Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
 
-4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Contact @ryangtanaka for more details.
+4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Introduce yourself or contact @ryangtanaka for more details.  Or come join us at Civic Hack Night at with Code for America/San Francisco with the SF Brigade!  http://codeforsanfrancisco.org/
 
 <b>About the Repository</b></br>
 
