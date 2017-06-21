@@ -34,4 +34,4 @@ We are always looking to improve the robustness of our prediction model, so we a
 
 <i>/lib/</i> folder contains the model for risk assessment.
 
-<i>address_matching</i> is a prototype Python script that does inexact/fuzzy matching of street address strings to a standardized format.
+<i>/address_matching/</i> is a prototype Python script that does inexact/fuzzy matching of street address strings to a standardized format.
