@@ -28,6 +28,8 @@ We are always looking to improve the robustness of our prediction model, so we a
 - <b>First Column:</b> EAS BaseID and/or CNN [So we can match address data to our model.]
 - <b>The Rest:</b> Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
 
+Note: This is a project that's geographically limited to the San Francisco area, so information outside of that city probably won't be usable.
+
 4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Introduce yourself or contact @ryangtanaka for more details.  Or come join us at Civic Hack Night at with Code for America/San Francisco with the SF Brigade!  http://codeforsanfrancisco.org/
 
 <b>About the Repository</b></br>
