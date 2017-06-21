@@ -10,6 +10,7 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit
 
 <b>Latest Data Set File (.csv)</b></br>
+
 Can be found in /addresses/ folder or downloaded at:
 https://drive.google.com/file/d/0B7ce50Tgcva8RnBEU2VTVVlkLWM/view?usp=sharing
 
@@ -21,8 +22,14 @@ https://drive.google.com/file/d/0B7ce50Tgcva8RnBEU2VTVVlkLWM/view?usp=sharing
 
 We are always looking to improve the robustness of our prediction model, so we are always looking for feedback, as well as additional data points and inputs to add to our repository!
 
-1.  Please take a look at the latest file for proper formatting.  Street Names, Numbers, Number Ranges, and Suffixes should be standardized.
+1.  Please take a look at the latest address file as a reference for how our addresses are formatted and matched.  We are using addresses from the San Francisco area that is standardized by the Enterprise Addressing System, which should give you multiple options to connect your data with ours.
 
-2.  Please include a short note or documentation on how, what, and why the data set you provided would be a good indicator of fire risk.  Keep in mind that the final end result is a relative risk score of 0-1, so we don't need to be super-exact in terms of absolute value.
+2.  Please include a short note or documentation on how, what, and why the data set you provided would be a good indicator of fire risk.  The more research the better, since it'll give our data scientists a better idea how to weigh the data points when compiling it into a fire risk score.
 
-3.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Contact @ryangtanaka for access to our repo.
+3.  The format that we are looking for when we do our merge:
+
+- File Format: .csv
+- First Column: EAS BaseID and/or CNN [So we can match address data to our model.]
+- The Rest: Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
+
+4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Contact @ryangtanaka for more details.
