@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head><style type="text/css">
+
+.labels {
+  color: blue;
+  background-color: white;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  width: 100px;
+  border: 0;
+}
+</style></head>
+<body>
+
+<h1 style="font-size:20px;color:red;font-family:arial">$title</h1>
+
+<div id="googleMap" style="width:600px;height:600px;"></div>
+
+<script>
+function myMap() {
+
+function pinSymbol(color) {
+    return {
+        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#000',
+        strokeWeight: 1,
+        scale: 1,
+        labelOrigin: new google.maps.Point(0,-29)
+    };
+}
+
+
+
+var mapProp= {
+    center:new google.maps.LatLng($search_coord),
+    zoom:19 ,mapTypeId:google.maps.MapTypeId.HYBRID
+};
+
+<!--mapTypeId:google.maps.MapTypeId.HYBRID,-->
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var markers=[];
+var coordinates=$coordinates
+var labels=$labels
+
+for (i=0;i<coordinates.length;i++) {
+    var marker=new google.maps.Marker({position:coordinates[i], label: {}});
+    marker.setMap(map);
+
+
+    <!--var infowindow = new google.maps.InfoWindow({-->
+    <!--content:labels[i]-->
+    <!--});-->
+    <!--infowindow.open(map,marker)-->
+  <!--google.maps.event.addListener(marker, 'mouseover', function() {-->
+  <!--infowindow.open(map,this);-->
+  <!--});-->
+}
+
+        var LineCoordinates = [
+          $mle_coord,
+          $offset
+        ];
+        var Line = new google.maps.Polyline({
+          path: LineCoordinates,
+          geodesic: true,
+          strokeColor: '#ffff00',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        Line.setMap(map);
+        var search_address=new google.maps.InfoWindow ({position:$offset,content:'Target Address: '+ $target_address
+        });
+
+        search_address.open(map);
+
+        var found=new google.maps.Marker ({position:$mle_coord,label:$mle_address,labelClass: "labels",icon:pinSymbol('green')});
+        found.setMap(map);
+
+
+
+<!--var marker = new google.maps.Marker({position:mapProp.center});-->
+<!--var marker2 = new google.maps.Marker({position: {lat: 37.7435, lng: -122.388}});-->
+  <!--marker.setMap(map);-->
+  <!--marker2.setMap(map);-->
+
+var circle = new google.maps.Circle({
+  center:mapProp.center,
+  radius:$radius,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.9,
+  strokeWeight:3,
+  fillColor:"#0000FF",
+  fillOpacity:0.0
+});
+circle.setMap(map);
+
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB81DeQtES-5dyBhsvEahFieXIRvvHzy_I&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>

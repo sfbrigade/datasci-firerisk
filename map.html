@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head><style type="text/css">
+
+.labels {
+  color: blue;
+  background-color: white;
+  font-family: "Lucida Grande", "Arial", sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  width: 100px;
+  border: 0;
+}
+</style></head>
+<body>
+
+<h1 style="font-size:20px;color:red;font-family:arial">Searching for 661  Divisadero St 
+ -> Found 661 DIVISADERO ST 94117</h1>
+
+<div id="googleMap" style="width:600px;height:600px;"></div>
+
+<script>
+function myMap() {
+
+function pinSymbol(color) {
+    return {
+        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: '#000',
+        strokeWeight: 1,
+        scale: 1,
+        labelOrigin: new google.maps.Point(0,-29)
+    };
+}
+
+
+
+var mapProp= {
+    center:new google.maps.LatLng({ lat:37.7757440100296,lng:-122.43828739 }),
+    zoom:19 ,mapTypeId:google.maps.MapTypeId.HYBRID
+};
+
+<!--mapTypeId:google.maps.MapTypeId.HYBRID,-->
+
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+var markers=[];
+var coordinates=[{lng:-122.43850929,lat:37.77518895},{lng:-122.4385929,lat:37.77556318},{lng:-122.4385929,lat:37.77556318},{lng:-122.4385929,lat:37.77556318},{lng:-122.4385929,lat:37.77556318},{lng:-122.4385929,lat:37.77556318},{lng:-122.4385929,lat:37.77556318},{lng:-122.43850064,lat:37.77560917},{lng:-122.43850611,lat:37.77561048},{lng:-122.43850064,lat:37.77560917},{lng:-122.43850064,lat:37.77560917},{lng:-122.43860464,lat:37.77605671},{lng:-122.43852350000002,lat:37.77606702},{lng:-122.43852350000002,lat:37.77606702},{lng:-122.43805603,lat:37.77535284},{lng:-122.43831555,lat:37.77511729},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43814892,lat:37.7751403},{lng:-122.43823431,lat:37.77512935},{lng:-122.43805603,lat:37.77535284},{lng:-122.43814892,lat:37.7751403},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43814892,lat:37.7751403},{lng:-122.43823431,lat:37.77512935},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.4383197,lat:37.77511841},{lng:-122.4380453,lat:37.77532209},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.43803725,lat:37.77529029},{lng:-122.43805603,lat:37.77535284},{lng:-122.43805603,lat:37.77535284},{lng:-122.4382675,lat:37.77538184},{lng:-122.43827675,lat:37.77544567},{lng:-122.4382675,lat:37.77538184},{lng:-122.4382675,lat:37.77538184},{lng:-122.4382675,lat:37.77538184},{lng:-122.43827675,lat:37.77544567},{lng:-122.4382675,lat:37.77538184},{lng:-122.4382675,lat:37.77538184},{lng:-122.43824384,lat:37.77552078},{lng:-122.43824384,lat:37.77552078},{lng:-122.43824384,lat:37.77552078},{lng:-122.43826535,lat:37.77562652},{lng:-122.43826535,lat:37.77562652},{lng:-122.43826535,lat:37.77562652},{lng:-122.43828739,lat:37.77574401},{lng:-122.43834325,lat:37.77616204},{lng:-122.43832105,lat:37.77605103},{lng:-122.43844745,lat:37.776267}]
+var labels=['1334 HAYES ST 94117', '1333 GROVE ST 94117', '1335 GROVE ST 94117', '1331 GROVE ST 94117', '1339 GROVE ST 94117', '1329 GROVE ST 94117', '1337 GROVE ST 94117', '1315 GROVE ST 94117', '1321 GROVE ST 94117', '1317 GROVE ST 94117', '1319 GROVE ST 94117', '1330 GROVE ST 94117', '1328 GROVE ST 94117', '1326 GROVE ST 94117', '625 DIVISADERO ST 5 94117', '1326 HAYES ST 94117', '625 DIVISADERO ST 94117', '625 DIVISADERO ST 14 94117', '625 DIVISADERO ST 9 94117', '1312 HAYES ST 94117', '1314 HAYES ST 94117', '625 DIVISADERO ST 4 94117', '1310 HAYES ST 94117', '625 DIVISADERO ST 6 94117', '625 DIVISADERO ST 8 94117', '625 DIVISADERO ST 13 94117', '1308 HAYES ST 94117', '1318 HAYES ST 94117', '625 DIVISADERO ST 10 94117', '625 DIVISADERO ST 3 94117', '1324 HAYES ST 94117', '621 DIVISADERO ST 94117', '625 DIVISADERO ST 23 94117', '625 DIVISADERO ST 16 94117', '625 DIVISADERO ST 21 94117', '619 DIVISADERO ST 94117', '625 DIVISADERO ST 17 94117', '625 DIVISADERO ST 15 94117', '631 DIVISADERO ST 1 94117', '635 DIVISADERO ST 94117', '631 DIVISADERO ST 5 94117', '631 DIVISADERO ST 4 94117', '631 DIVISADERO ST 94117', '637 DIVISADERO ST 94117', '631 DIVISADERO ST 2 94117', '631 DIVISADERO ST 3 94117', '639 DIVISADERO ST 94117', '641 DIVISADERO ST 94117', '639A DIVISADERO ST 94117', '643 DIVISADERO ST 94117', '645 DIVISADERO ST 94117', '655 DIVISADERO ST 94117', '661 DIVISADERO ST 94117', '705 DIVISADERO ST 94117', '701 DIVISADERO ST 94117', '717 DIVISADERO ST 94117']
+
+for (i=0;i<coordinates.length;i++) {
+    var marker=new google.maps.Marker({position:coordinates[i], label: {}});
+    marker.setMap(map);
+
+
+    <!--var infowindow = new google.maps.InfoWindow({-->
+    <!--content:labels[i]-->
+    <!--});-->
+    <!--infowindow.open(map,marker)-->
+  <!--google.maps.event.addListener(marker, 'mouseover', function() {-->
+  <!--infowindow.open(map,this);-->
+  <!--});-->
+}
+
+        var LineCoordinates = [
+          { lat:37.77574401,lng:-122.43828739 },
+          { lat:37.7760440100296,lng:-122.43798739 }
+        ];
+        var Line = new google.maps.Polyline({
+          path: LineCoordinates,
+          geodesic: true,
+          strokeColor: '#ffff00',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+
+        Line.setMap(map);
+        var search_address=new google.maps.InfoWindow ({position:{ lat:37.7760440100296,lng:-122.43798739 },content:'Target Address: '+ "661  Divisadero St"
+        });
+
+        search_address.open(map);
+
+        var found=new google.maps.Marker ({position:{ lat:37.77574401,lng:-122.43828739 },label:"661 DIVISADERO ST 94117",labelClass: "labels",icon:pinSymbol('green')});
+        found.setMap(map);
+
+
+
+<!--var marker = new google.maps.Marker({position:mapProp.center});-->
+<!--var marker2 = new google.maps.Marker({position: {lat: 37.7435, lng: -122.388}});-->
+  <!--marker.setMap(map);-->
+  <!--marker2.setMap(map);-->
+
+var circle = new google.maps.Circle({
+  center:mapProp.center,
+  radius:60,
+  strokeColor:"#0000FF",
+  strokeOpacity:0.9,
+  strokeWeight:3,
+  fillColor:"#0000FF",
+  fillOpacity:0.0
+});
+circle.setMap(map);
+
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB81DeQtES-5dyBhsvEahFieXIRvvHzy_I&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
