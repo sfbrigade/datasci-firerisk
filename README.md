@@ -25,12 +25,12 @@ We are always looking to improve the robustness of our prediction model, so we a
 3.  The format that we are looking for when we do our merge:
 
 - <b>File Format:</b> .csv
-- <b>First Column:</b> EAS BaseID and/or CNN [So we can match address data to our model.]
+- <b>First Column:</b> EAS BaseID (Unit Level Addresses) or CNN (Building Level Addresses) [So we can match address data to our model.]
 - <b>The Rest:</b> Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
 
 Note: This is a project that's geographically limited to the San Francisco area, so information outside of that city probably won't be usable.
 
-4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Introduce yourself or contact @ryangtanaka for more details.  Or come join us at Civic Hack Night at with Code for America/San Francisco with the SF Brigade!  http://codeforsanfrancisco.org/
+4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Introduce yourself or contact @ryangtanaka for more details.  Or come join us at Civic Hack Night at with Code for America/San Francisco with the SF Brigade!  http://codeforsanfrancisco.org/  If you need help with how to do a proper data merge, there will be plenty of people here to help.
 
 <b>About the Repository</b></br>
 
