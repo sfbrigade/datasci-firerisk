@@ -1,10 +1,19 @@
-##    Exploratory Data Analysis
-##    San Francisco Fire Risk Project
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r, include=FALSE}
 
 library(data.table)
 library(tidyverse)
 library(lubridate)
+```
 
+
+
+```{r, include = FALSE}
 ### Load Data
 
 taxmap.data <- fread('data/tax_map.csv')                          ## From raw_with_match folder
@@ -12,7 +21,13 @@ taxrolls.data <- fread('data/Historic_Secured_Property_Tax_Rolls.csv')
 
 fire.incidents.data <- fread('data/matched_Fire_Incidents.csv')   ## From raw_with_matched folder
 
+```
 
+This is a test to see if there is a correlation between age of building and fire incidents in San Francisco. The analysis is based upon data tax data and fire incident data from the City of San Francisco. The fire data spans years 2011 through 2015. 
+
+_Note 8-2-2017: The code below was run upon data that contained data entry errors. Consider re-running with cleaned-up data if available._ 
+
+```{r, echo = FALSE}
 ### Data Processing
 
 # Join tax data with fire incident data
@@ -30,8 +45,9 @@ temp_incident <- fire.incidents.data %>%
 
 joined_incident <- temp_tax_2015 %>%
   left_join(temp_incident, by = c('EAS BaseID Matched' = 'EAS'))
+```
 
-
+```{r}
 # Calculate count of incidents, group by Block and Lot Number and Year Built
 # Assume age > 0 or age < 200 are outliers due to collection error
 
@@ -44,4 +60,10 @@ collapsed_incident <- joined_incident %>%
 # Scatterplot: x = age, y = count of incidents
 
 ggplot(data = collapsed_incident, mapping = aes(x = age, y = count_incident)) + 
-  geom_point(alpha = 1/2)
+  geom_point(alpha = 1/2) + labs(x = 'Building Age (Age)', y = 'Count of fire incidents')
+```
+
+```{r}
+ggplot(data = collapsed_incident, mapping = aes(x = age)) + geom_histogram(binwidth = 10) + ggtitle('Building Age Count')
+```
+
