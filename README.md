@@ -33,9 +33,14 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 5) product and project managers
 
 ## Getting Started
-The main documentation for this project can be found here (this doc should be the most up to date): [Main Google Docs Documentation](https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit)
-Our workflow chart is here: [SF Fire Risk Workflow](https://docs.google.com/drawings/d/1ASvsFydQ9P6UWRNJqKOwI66rKG8koE4wKACBpGYAO_4/edit)
-SF Fire Risk Attribute Sheet [SF Fire Risk Predictive Model Attribute Sheet](https://docs.google.com/spreadsheets/d/1-Ml8PoTZT2EgSIlxqr4b24DcctBWoLDiNInSIlyf9Vk/edit#gid=0) (Always adding more!)
+The main documentation for this project can be found here (this doc should be the most up to date): 
+[Main Google Docs Documentation](https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit)
+
+Our workflow chart is here: 
+[SF Fire Risk Workflow](https://docs.google.com/drawings/d/1ASvsFydQ9P6UWRNJqKOwI66rKG8koE4wKACBpGYAO_4/edit)
+
+SF Fire Risk Attribute Sheet 
+[SF Fire Risk Predictive Model Attribute Sheet](https://docs.google.com/spreadsheets/d/1-Ml8PoTZT2EgSIlxqr4b24DcctBWoLDiNInSIlyf9Vk/edit#gid=0) (Always adding more!)
 
 ## Featured Notebooks/Analysis
 [May 2017 Presentation](https://docs.google.com/presentation/d/1s1-_cNY9WnjF2ieiBeY5pDDFaHKs5KM5Yvfrd26g-d8/edit#slide=id.p)
