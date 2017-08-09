@@ -1,39 +1,50 @@
-<b>San Francisco Fire Risk Project</b></br>
+# San Francisco Fire Risk Project
+This project is a part of the [Data Science Working Group](http://datascience.codeforsanfrancisco.org) at [Code for San Francisco](http://www.codeforsanfrancisco.org).  Other DSWG projects can be found at the [main GitHub repo](https://github.com/sfbrigade/data-science-wg).
 
+#### Project Status: Active
+
+## Project Intro/Objective
 This project attempts to model and acquire data from SF OpenData - and other sources - to predict the relative risk of fire in San Francisco’s buildings and public spaces.
 
-The mapping software will allow the user to type in an address and see fire-related risks and incidences around their area, as well as provide recommendations by fire safety experts in cases where there may be a high enough score to warrant preventive actions.
+### Partner
+Code for America, San Francisco Brigade
 
+### Methods Used
+* Data Science
+* Machine Learning
+* Data Visualization
+* Predictive Modeling
+* Data Analysis
+
+### Technologies
+* R
+* Python
+* Excel (anything data related)
+
+## Project Description
+The mapping software will allow the user to type in an address and see fire-related risks and incidences around their area, as well as provide recommendations by fire safety experts in cases where there may be a high enough score to warrant preventive actions.
 This project is modeled after Data Science for Social Good's (DSSG) Firebird Project in Atlanta, GA. Consultation is occasionally provided by members of the DSSG and former members of the Atlanta project.
 
-<b>Documentation</b></br>
-https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit
+## Needs of this project
+1) data scientists
+2) data analysts
+3) data visualizers
+4) researchers and journalists (find trends and data related to fire incidents in the city)
+5) product and project managers
 
-<b>Address Data Set (.csv)</b></br>
+## Getting Started
+The main documentation for this project can be found here (this doc should be the most up to date): [Main Google Docs Documentation](https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit)
+Our workflow chart is here: [SF Fire Risk Workflow](https://docs.google.com/drawings/d/1ASvsFydQ9P6UWRNJqKOwI66rKG8koE4wKACBpGYAO_4/edit)
+SF Fire Risk Attribute Sheet [SF Fire Risk Predictive Model Attribute Sheet](https://docs.google.com/spreadsheets/d/1-Ml8PoTZT2EgSIlxqr4b24DcctBWoLDiNInSIlyf9Vk/edit#gid=0) (Always adding more!)
 
-Can be found in the <i>/addresses/</i> folder or downloaded at:
-https://drive.google.com/file/d/0B7ce50Tgcva8RnBEU2VTVVlkLWM/view?usp=sharing
+## Featured Notebooks/Analysis
+[May 2017 Presentation](https://docs.google.com/presentation/d/1s1-_cNY9WnjF2ieiBeY5pDDFaHKs5KM5Yvfrd26g-d8/edit#slide=id.p)
 
-<b>Instructions for Submitting a Dataset</b></br>
+## Contributing DSWG Members
 
-We are always looking to improve the robustness of our prediction model, so we are always looking for feedback, as well as additional data points and inputs to add to our repository!
+**Team Lead: Ryan Tanaka (@ryangtanaka)**
 
-1.  Please take a look at the latest address file as a reference for how our addresses are formatted and matched.  We are using addresses from the San Francisco area that is standardized by the Enterprise Addressing System, which should give you multiple options to connect your data with ours.
-
-2.  Please include a short note or documentation on how, what, and why the data set you provided would be a good indicator of fire risk.  The more research the better, since it'll give our data scientists a better idea how to weigh the data points when compiling it into a fire risk score.
-
-3.  The format that we are looking for when we do our merge:
-
-- <b>File Format:</b> .csv
-- <b>First Column:</b> EAS BaseID (Unit Level Addresses) or CNN (Building Level Addresses) [So we can match address data to our model.]
-- <b>The Rest:</b> Column names with data points related to fire risk, multiple columns OK.  [The more complete the data set is, the better!]
-
-Note: This is a project that's geographically limited to the San Francisco area, so information outside of that city probably won't be usable.
-
-4.  Come find us in our Slack channel at https://sfbrigade.slack.com - #datasci-firerisk!  Introduce yourself or contact @ryangtanaka for more details.  Or come join us at Civic Hack Night at with Code for America/San Francisco with the SF Brigade!  http://codeforsanfrancisco.org/  If you need help with how to do a proper data merge, there will be plenty of people here to help.
-
-<b>About the Repository</b></br>
-
-<i>/lib/</i> folder contains the model for risk assessment.
-
-<i>/address_matching/</i> is a prototype Python script that does inexact/fuzzy matching of street address strings to a standardized format.
+## Contact
+* If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
+* Our slack channel is `#datasci-firerisk`
+* Feel free to contact team leads with any questions or if you are interested in contributing!  Most of our activities are done in our Slack channel.
