@@ -17,9 +17,14 @@ Code for America, San Francisco Brigade
 * Data Analysis
 
 ### Technologies
-* R
 * Python
-* Excel (anything data related)
+  * NumPy / pandas
+  * Scikit-learn
+  * matplotlib
+* R
+  * dplyr / tidyr
+  * ggplot2
+* Jupyter Notebook
 
 ## Project Description
 The mapping software will allow the user to type in an address and see fire-related risks and incidences around their area, as well as provide recommendations by fire safety experts in cases where there may be a high enough score to warrant preventive actions.
@@ -33,6 +38,11 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 5) product and project managers
 
 ## Getting Started
+1. Clone this repo. For help, see [tutorial](https://help.github.com/articles/cloning-a-repository/)
+2. Download data stored in the [project Google Drive](https://drive.google.com/drive/folders/0B7ce50Tgcva8T2JNdTlxdi1hRXc).
+3. [...]
+
+## Additional Documentation
 The main documentation for this project can be found here (this doc should be the most up to date): 
 [Main Google Docs Documentation](https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit)
 
@@ -48,6 +58,16 @@ SF Fire Risk Attribute Sheet
 ## Contributing DSWG Members
 
 **Team Lead: Ryan Tanaka (@ryangtanaka)**
+
+**Other Members**
+
+| Name          | Slack Handle   |
+|---------------|----------------|
+| Kel Yip       | @yamariva2000  |
+| Seward Lee    | @sewardlee337  |
+| Kenny Durell  | @kennyd        |
+| Sam Williams  | @swilliams2099 |
+| Kevin Stahler | @stahlerk      |
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
