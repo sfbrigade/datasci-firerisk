@@ -6,9 +6,6 @@ This project is a part of the [Data Science Working Group](http://datascience.co
 ## Project Intro/Objective
 This project attempts to model and acquire data from SF OpenData - and other sources - to predict the relative risk of fire in San Francisco’s buildings and public spaces.
 
-### Partner
-Code for America, San Francisco Brigade
-
 ### Methods Used
 * Data Science
 * Machine Learning
