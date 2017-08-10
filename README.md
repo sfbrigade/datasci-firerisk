@@ -71,5 +71,5 @@ SF Fire Risk Attribute Sheet
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
-* Our slack channel is `#datasci-firerisk`
+* Our Slack channel is `#datasci-firerisk`
 * Feel free to contact team leads with any questions or if you are interested in contributing!  Most of our activities are done in our Slack channel.
