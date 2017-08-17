@@ -1,5 +1,5 @@
 ---
-title: "R Notebook"
+title: "Exploratory Data Analysis: Fire Incident Dataset"
 output: html_notebook
 ---
 
@@ -27,7 +27,7 @@ This is a test to see if there is a correlation between age of building and fire
 
 _Note 8-2-2017: The code below was run upon data that contained data entry errors. Consider re-running with cleaned-up data if available._ 
 
-```{r, echo = FALSE}
+```{r}
 ### Data Processing
 
 # Join tax data with fire incident data
@@ -60,10 +60,30 @@ collapsed_incident <- joined_incident %>%
 # Scatterplot: x = age, y = count of incidents
 
 ggplot(data = collapsed_incident, mapping = aes(x = age, y = count_incident)) + 
-  geom_point(alpha = 1/2) + labs(x = 'Building Age (Age)', y = 'Count of fire incidents')
+  geom_point(alpha = 1/2) + labs(x = 'Building Age (Age)', y = 'Count of fire incidents') + theme(plot.title = element_text(hjust = 0.5)) + ggtitle("Fire Incidents by Year Built")
 ```
+
+```{r, include = FALSE}
+ggplot(data = collapsed_incident, mapping = aes(x = age)) + geom_histogram(binwidth = 10) + ggtitle('Building Age Count') + theme(plot.title = element_text(hjust = 0.5))
+```
+
+Bin the ages of buildings, and then plot buildings that had one or more fire incidents.
 
 ```{r}
-ggplot(data = collapsed_incident, mapping = aes(x = age)) + geom_histogram(binwidth = 10) + ggtitle('Building Age Count')
-```
 
+##  Unique EAS codes that have had >= 1 fire incidents in our time window 
+
+EAS_buildings <- unique(temp_incident$EAS)
+
+## Buildings with >= 1 fire incidents
+buildings_w_fire <- temp_tax_2015 %>%
+  mutate(fire = `EAS BaseID Matched` %in% EAS_buildings) %>%
+  mutate(age = 2017 - `Year Property Built`) %>%
+  mutate(decade = plyr::round_any(`Year Property Built`, 10, floor)) %>%
+  group_by(decade) %>%
+  summarize(proportion_fire = sum(fire)/ n(), count = n()) %>%
+  filter(decade >= 1870 & decade <= 2010)
+
+print(buildings_w_fire)
+
+```
