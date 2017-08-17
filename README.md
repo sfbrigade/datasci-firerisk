@@ -6,9 +6,6 @@ This project is a part of the [Data Science Working Group](http://datascience.co
 ## Project Intro/Objective
 This project attempts to model and acquire data from SF OpenData - and other sources - to predict the relative risk of fire in San Francisco’s buildings and public spaces.
 
-### Partner
-Code for America, San Francisco Brigade
-
 ### Methods Used
 * Data Science
 * Machine Learning
@@ -55,6 +52,7 @@ SF Fire Risk Attribute Sheet
 ## Featured Notebooks/Analysis
 [May 2017 Presentation](https://docs.google.com/presentation/d/1s1-_cNY9WnjF2ieiBeY5pDDFaHKs5KM5Yvfrd26g-d8/edit#slide=id.p)
 
+[CartoDB Visual Mock-Up](https://sheffieldhale.carto.com/viz/c4d9c6b4-35f9-11e7-bb67-0e3a376473ab/public_map)
 ## Contributing DSWG Members
 
 **Team Lead: Ryan Tanaka (@ryangtanaka)**
