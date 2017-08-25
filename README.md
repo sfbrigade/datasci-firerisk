@@ -37,7 +37,9 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 ## Getting Started
 1. Clone this repo. For help, see [tutorial](https://help.github.com/articles/cloning-a-repository/)
 2. Download data stored in the [project Google Drive](https://drive.google.com/drive/folders/0B7ce50Tgcva8T2JNdTlxdi1hRXc).
-3. [...]
+3. Review [Project Wiki](https://github.com/sfbrigade/datasci-firerisk/wiki).
+4. Check [Issue Tracker](https://github.com/sfbrigade/datasci-firerisk/issues) and discuss with team members to understand current project needs.
+5. Hack away! :) 
 
 ## Additional Documentation
 The main documentation for this project can be found here (this doc should be the most up to date): 
