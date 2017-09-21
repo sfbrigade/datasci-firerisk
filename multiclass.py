@@ -1,10 +1,10 @@
 import pandas as pd
 
-def prepare_data(multiclass=False):
+
+def XY_data(multiclass=False):
     #will process binary or multiclass
 
-    k=pd.read_csv('kevin.csv')
-
+    k=pd.read_csv('kevin.csv',low_memory=False)
     # set target to Fire Incident Type
     y=k.pop('Fire_Incident_Type')
 
@@ -24,12 +24,21 @@ def prepare_data(multiclass=False):
     #calculate property age
     x['age']=2016-x.Yr_Property_Built
     #create one-hot variables for property type and neighborhood
+
+    return x,y,unique
+
+def Data_normalized(multiclass=False):
+
+    x,y,unique=XY_data(multiclass=multiclass)
+
+
     x_dummies=pd.get_dummies(data=x[['Property_Code_Des','Neighborhood']],drop_first=True)
 
     # get quantitative features
     x_quantitative=x[['age','Num_Bathrooms', 'Num_Bedrooms',
            'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
            'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ]]
+
     #normalize quantitative features
     x_scaled=(x_quantitative-x_quantitative.mean())/(x_quantitative.max()-x_quantitative.min())
 
@@ -38,13 +47,17 @@ def prepare_data(multiclass=False):
     return x_all,y,unique
 
 
-def classifier(train=True,x=None,y=None,target_names=None,class_weight=None):
+def classifier(train=True,x=None,y=None,target_names=None,class_weight=None,multiclass=False,plot=False,cross_val=False):
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.model_selection import train_test_split
     from sklearn.multiclass import OneVsRestClassifier
 
     # use multiclass random forest classifier for both binary and multiclass
-    rf_model=OneVsRestClassifier(RandomForestClassifier(verbose=1,class_weight=class_weight),n_jobs=3)
+    if multiclass:
+
+        rf_model=OneVsRestClassifier(RandomForestClassifier(verbose=0,class_weight=class_weight),n_jobs=3)
+    else:
+        rf_model = RandomForestClassifier(verbose=0, class_weight=class_weight)
 
     xtrain,xtest,ytrain,ytest=train_test_split(x,y,test_size=.33)
 
@@ -73,11 +86,34 @@ def classifier(train=True,x=None,y=None,target_names=None,class_weight=None):
     ytest=ytest.reset_index(drop=True)
 
     print(classification_report(ytest,ypred,target_names=target_names))
+    #print(multiclass)
+
+
+    if multiclass == False:
+        from sklearn.metrics import roc_curve
+
+        fpr, tpr, thresh=roc_curve(ytest,rf_model.predict_proba(xtest)[:,1])
+
+        import matplotlib.pyplot as plt
+        import numpy as np
+        plt.plot(fpr,tpr,linestyle='-')
+        plt.plot([0,1],[0,1],linestyle='--')
+        plt.xlabel('False Positive Rate')
+        plt.ylabel('True Positive Rate')
+        plt.title('ROC Curve for Binary Class')
+        if plot:
+            plt.show()
+    print([xtrain.columns[i] for i in np.argsort(rf_model.feature_importances_)[::-1]])
+
+    from sklearn.model_selection import cross_val_score
+    if cross_val:
+        scores=cross_val_score(rf_model,X=x,y=y,cv=10)
+        print('cross validation {}'.format(scores))
 
 
 
 if __name__ == '__main__':
 
-    x,y,target_names=prepare_data(multiclass=False)
-
-    classifier(train=True,x=x,y=y,target_names=target_names, class_weight='balanced')
+    x,y,target_names=Data_normalized(multiclass=False)
+    #
+    classifier(train=True,x=x,y=y,target_names=target_names, class_weight=None,multiclass=False,plot=False,cross_val=True)
