@@ -68,6 +68,7 @@ SF Fire Risk Attribute Sheet
 | Kenny Durell  | @kennyd        |
 | Sam Williams  | @swilliams2099 |
 | Kevin Stahler | @stahlerk      |
+| Yuzhe Chen    | @yzxchn        |
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
