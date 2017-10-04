@@ -1,12 +1,12 @@
 import pandas as pd
-
+from sklearn.linear_model import LogisticRegression
 
 def XY_data(multiclass=False):
     #will process binary or multiclass
 
-    k=pd.read_csv('kevin.csv',low_memory=False)
+    k=pd.read_csv('data/masterdf_20170920.csv',low_memory=False)
     # set target to Fire Incident Type
-    y=k.pop('Fire_Incident_Type')
+    y=k.pop('Incident_Cat')
 
     # assign classes
     # Nan becomes no incident
@@ -32,7 +32,7 @@ def Data_normalized(multiclass=False):
     x,y,unique=XY_data(multiclass=multiclass)
 
 
-    x_dummies=pd.get_dummies(data=x[['Property_Code_Des','Neighborhood']],drop_first=True)
+    x_dummies=pd.get_dummies(data=x[['Building_Cat','Neighborhood']],drop_first=True)
 
     # get quantitative features
     x_quantitative=x[['age','Num_Bathrooms', 'Num_Bedrooms',
@@ -67,17 +67,13 @@ def classifier(train=True,x=None,y=None,target_names=None,class_weight=None,mult
     if train: # run training and pickle model else just load model
         rf_model.fit(xtrain,ytrain)
         # output file name
-        output=open('clf.pkl','wb')
-        s = pickle.dump(rf_model,output)
-    # load output file
-    load=open('clf.pkl','rb')
-    # return model
-    rf_model = pickle.load(load)
+        logit = LogisticRegression()
+        logit.fit(xtrain, ytrain)
 
     print('training accuracy {:.2f}'.format(rf_model.score(xtrain,ytrain)))
-
+    print 'logit training {}'.format(logit.score(xtrain, ytrain))
     print('testing accuracy {:.2f}'.format(rf_model.score(xtest,ytest)))
-
+    print 'logit test acc {}'.format(logit.score(xtest, ytest))
     ypred=rf_model.predict(xtest)
     ypred=pd.DataFrame(ypred)
 
@@ -108,7 +104,16 @@ def classifier(train=True,x=None,y=None,target_names=None,class_weight=None,mult
     from sklearn.model_selection import cross_val_score
     if cross_val:
         scores=cross_val_score(rf_model,X=x,y=y,cv=10)
-        print('cross validation {}'.format(scores))
+        print('rf cross validation {}'.format(scores))
+        scores = cross_val_score(logit, X=x, y=y, cv=10)
+        print 'logit cv scores {}'.format(scores)
+    #
+    # fi = rf_model.feature_importances_
+    # cols = xtrain.columns
+    # col_fi = sorted(zip(cols, fi), key=lambda x: x[1])
+    #
+    # for col, fi in col_fi:
+    #     print col, fi
 
 
 
