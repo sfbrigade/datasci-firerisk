@@ -61,18 +61,17 @@ def add_scores(score_dict, model_key, y_true, y_pred, predicted_probs):
     return score_dict
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        print 'Please enter file location'
+    # if len(sys.argv) < 2:
+    #     print 'Please enter file location'
 
     df = pd.read_csv('data/masterdf_20170920.csv', low_memory=False)
 
     y, X = data_preprocessing(df)
 
-
     for col in X.columns:
         print col
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=24, test_size=0.33)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.33)
     X_train = X_train.reset_index().values
     X_test = X_test.reset_index().values
     y_train = y_train.values
@@ -121,6 +120,7 @@ if __name__ == '__main__':
         print 'updating score dict w/ sigmoid scores'
         score_dict = add_scores(score_dict, 'sigmoidal', y_val, sigmoid_preds, sigmoid_probs)
 
+    print score_dict
     print 'finished cross validation'
 
     pipe.fit(X_train, y_train)
