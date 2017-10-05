@@ -117,10 +117,51 @@ if __name__ == '__main__':
 
     df = pd.read_csv('data/masterdf_20170920.csv', low_memory=False)
 
-    y, X = data_preprocessing(df)
+    ### TESTING
 
-    for col in X.columns:
+    df.columns
+    target_col = 'Incident_Cat'
+    df[target_col].notnull().sum()
+    len(df)
+    # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
+    #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
+    #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
+
+    quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
+           'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
+           'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age', 'Incident_Cat']
+    cat_cols = ['Building_Cat','Neighborhood']
+
+    # feature engineering
+    df['age'] = 2016 - df['Yr_Property_Built']
+
+    # dummification
+    dummies = pd.get_dummies(df[cat_cols], drop_first=False)
+
+    # target creation
+    df[target_col] = df[target_col].notnull()
+    y = df.pop(target_col)
+
+    # final df
+    df = df.loc[:, quant_cols]
+    df_final = pd.concat([df, dummies], axis=1)
+
+    for col in df_final.columns:
         print col
+
+    df_final[target_col].sum()
+    mask = df_final[target_col] == 0
+    119220 * 1.0 / len(df_final[mask])
+    df_final.groupby([target_col, 'Num_Bathrooms']).size()
+    df_final.groupby([target_col, 'Num_Bedrooms']).size()
+
+
+
+    ### TESTING
+
+    y, X = data_preprocessing(df)
+    y.sum()
+    len(y)
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.33)
     X_train = X_train.reset_index().values
@@ -147,7 +188,7 @@ if __name__ == '__main__':
     feat_imp = pipe.named_steps['model'].feature_importances_
     cols = X.columns
 
-    col_fi = sorted(zip(cols, feat_imp), key = lambda x: x[1])
+    col_fi = sorted(zip(cols, feat_imp), key = lambda x: (x[1])
 
     print '\n\n'
     print 'Feature Importances: '
