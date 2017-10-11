@@ -22,8 +22,14 @@ def data_preprocessing(df, target_col='Incident_Cat', drop_cat=False):
     '''
     Create target from df. NaN becomes no incident
 
-    INPUT: df
-    OUTPUT: df, df features and target
+    INPUTS:
+    df - Pandas DataFrame, including target
+    target_col - str, column name of target
+    drop_cat - bool, False if keeping all categories in dummification
+
+    OUTPUTS:
+    y - Pandas DataFrame, target values only
+    df_final, Pandas DataFrame, includes engineered features and dummified cols
     '''
     quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
            'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
@@ -49,6 +55,9 @@ def data_preprocessing(df, target_col='Incident_Cat', drop_cat=False):
 
 
 def add_scores(score_dict, model_key, y_true, y_pred, predicted_probs):
+    '''
+    Update score dictionary w/ various metrics
+    '''
     l_loss = log_loss(y_true, predicted_probs)
     brier_loss = brier_score_loss(y_true, predicted_probs)
     f1 = f1_score(y_true, y_pred)
@@ -75,7 +84,9 @@ def prob_calibration_cross_val(model, X_train, y_train, n_folds=5):
     ind = 0
     for train_index, test_index in kfold.split(X_train):
         ind += 1
+        print '\n'
         print 'Fold {}'.format(ind)
+        
         X_training, X_val = X_train[train_index], X_train[test_index]
         y_training, y_val = y_train[train_index], y_train[test_index]
 
@@ -119,43 +130,43 @@ if __name__ == '__main__':
 
     ### TESTING
 
-    df.columns
-    target_col = 'Incident_Cat'
-    df[target_col].notnull().sum()
-    len(df)
+    # df.columns
+    # target_col = 'Incident_Cat'
+    # df[target_col].notnull().sum()
+    # len(df)
+    # # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
+    # #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
+    # #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
+    #
     # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
     #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
-    #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
-
-    quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
-           'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
-           'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age', 'Incident_Cat']
-    cat_cols = ['Building_Cat','Neighborhood']
-
-    # feature engineering
-    df['age'] = 2016 - df['Yr_Property_Built']
-
-    # dummification
-    dummies = pd.get_dummies(df[cat_cols], drop_first=False)
-
-    # target creation
-    df[target_col] = df[target_col].notnull()
-    y = df.pop(target_col)
-
-    # final df
-    df = df.loc[:, quant_cols]
-    df_final = pd.concat([df, dummies], axis=1)
-
-    for col in df_final.columns:
-        print col
-
-    df_final[target_col].sum()
-    mask = df_final[target_col] == 0
-    119220 * 1.0 / len(df_final[mask])
-    df_final.groupby([target_col, 'Num_Bathrooms']).size()
-    df_final.groupby([target_col, 'Num_Bedrooms']).size()
-
-
+    #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age', 'Incident_Cat']
+    # cat_cols = ['Building_Cat','Neighborhood']
+    #
+    # # feature engineering
+    # df['age'] = 2016 - df['Yr_Property_Built']
+    #
+    # # dummification
+    # dummies = pd.get_dummies(df[cat_cols], drop_first=False)
+    #
+    # # target creation
+    # df[target_col] = df[target_col].notnull()
+    # y = df.pop(target_col)
+    #
+    # # final df
+    # df = df.loc[:, quant_cols]
+    # df_final = pd.concat([df, dummies], axis=1)
+    #
+    # for col in df_final.columns:
+    #     print col
+    #
+    # df_final[target_col].sum()
+    # mask = df_final[target_col] == 0
+    # 119220 * 1.0 / len(df_final[mask])
+    # df_final.groupby([target_col, 'Num_Bathrooms']).size()
+    # df_final.groupby([target_col, 'Num_Bedrooms']).size()
+    #
+    #
 
     ### TESTING
 
@@ -188,7 +199,7 @@ if __name__ == '__main__':
     feat_imp = pipe.named_steps['model'].feature_importances_
     cols = X.columns
 
-    col_fi = sorted(zip(cols, feat_imp), key = lambda x: (x[1])
+    col_fi = sorted(zip(cols, feat_imp), key = lambda x: x[1])
 
     print '\n\n'
     print 'Feature Importances: '
@@ -253,3 +264,6 @@ if __name__ == '__main__':
         print key, value
     plt.legend()
     plt.show()
+
+    print '\n\n'
+    print 'script finished'
