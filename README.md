@@ -58,10 +58,6 @@ SF Fire Risk Attribute Sheet
 [CartoDB Visual Mock-Up](https://sheffieldhale.carto.com/viz/c4d9c6b4-35f9-11e7-bb67-0e3a376473ab/public_map)
 ## Contributing DSWG Members
 
-**Team Lead: Ryan Tanaka (@ryangtanaka)**
-
-**Other Members**
-
 | Name          | Slack Handle   | Role                            | Website                       |
 |---------------|----------------|---------------------------------|-------------------------------|
 | Ryan Tanaka   | @ryangtanaka   | Product Manager, Team Lead      | http://product.ryangtanka.com | 
