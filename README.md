@@ -61,14 +61,15 @@ SF Fire Risk Attribute Sheet
 
 **Other Members**
 
-| Name          | Slack Handle   |
-|---------------|----------------|
-| Kel Yip       | @yamariva2000  |
-| Seward Lee    | @sewardlee337  |
-| Kenny Durell  | @kennyd        |
-| Sam Williams  | @swilliams2099 |
-| Kevin Stahler | @stahlerk      |
-| Yuzhe Chen    | @yzxchn        |
+| Name          | Slack Handle   | Role                            | Website                       |
+|---------------|----------------|---------------------------------|-------------------------------|
+| Ryan Tanaka   | @ryangtanaka   | Product Manager, Team Lead      | http://product.ryangtanka.com | 
+| Kel Yip       | @yamariva2000  | Data Scientist, Technical Lead  |                               |
+| Seward Lee    | @sewardlee337  | Data Scientist                  |                               |
+| Kenny Durell  | @kennyd        | Data Scientist                  |                               |
+| Sam Williams  | @swilliams2099 | Research, Outreach              |                               |
+| Kevin Stahler | @stahlerk      | Data Scientist                  |                               |
+| Yuzhe Chen    | @yzxchn        | Data Scientist                  |                               |
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
