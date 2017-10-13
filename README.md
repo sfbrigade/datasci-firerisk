@@ -67,6 +67,7 @@ SF Fire Risk Attribute Sheet
 | Sam Williams  | @swilliams2099 | Research, Outreach              |                               |
 | Kevin Stahler | @stahlerk      | Data Scientist                  |                               |
 | Yuzhe Chen    | @yzxchn        | Data Scientist                  |                               |
+| Chris Quiambao| @ccquiambao    | Data Scientist                  | https://github.com/ccquiambao | 
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
