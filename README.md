@@ -62,7 +62,7 @@ SF Fire Risk Attribute Sheet
 |---------------|----------------|---------------------------------|-------------------------------|
 | Ryan Tanaka   | @ryangtanaka   | Product Manager, Team Lead      | http://product.ryangtanka.com | 
 | Kel Yip       | @yamariva2000  | Data Scientist, Technical Lead  |                               |
-| Seward Lee    | @sewardlee337  | Data Scientist                  |                               |
+| Seward Lee    | @sewardlee337  | Data Scientist                  | http://www.sewardlee.com      |
 | Kenny Durell  | @kennyd        | Data Scientist                  |                               |
 | Sam Williams  | @swilliams2099 | Research, Outreach              |                               |
 | Kevin Stahler | @stahlerk      | Data Scientist                  |                               |
