@@ -14,7 +14,7 @@ from sklearn.model_selection import KFold
 import matplotlib.pyplot as plt
 from collections import defaultdict
 import sys
-
+import sklearn.calibration as calibration
 pd.options.display.max_columns = 200
 
 
@@ -31,8 +31,11 @@ def data_preprocessing(df, target_col='Incident_Cat', drop_cat=False):
     y - Pandas DataFrame, target values only
     df_final, Pandas DataFrame, includes engineered features and dummified cols
     '''
-    quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
-           'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
+    # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
+    #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
+    #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
+
+    quant_cols =['Num_Stories', 'Num_Units', 'Land_Value',
            'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
 
     cat_cols = ['Building_Cat','Neighborhood']
@@ -75,10 +78,9 @@ def prob_calibration_cross_val(model, X_train, y_train, n_folds=5):
     '''
     cross validate, includes probaility calibration
     '''
+    # Initialize dicttionary of scores and kfold obj
     model_names = ['base', 'isotonic', 'sigmoidal']
     score_dict = {key : defaultdict(list) for key in model_names}
-
-    # TODO split into prob calibration and cross validation pipeline
     kfold = KFold(n_splits=n_folds)
 
     ind = 0
@@ -86,37 +88,40 @@ def prob_calibration_cross_val(model, X_train, y_train, n_folds=5):
         ind += 1
         print '\n'
         print 'Fold {}'.format(ind)
-        
+
         X_training, X_val = X_train[train_index], X_train[test_index]
         y_training, y_val = y_train[train_index], y_train[test_index]
 
         print 'Fitting base model'
-        model.fit(X_train, y_train)
+        model.fit(X_training, y_training)
 
         # TODO functionalize predicts, predict_probs
         # TODO functionalize sigmoid fit and isotonic fit
         predicts = model.predict(X_val)
         predict_probs = model.predict_proba(X_val)[:, 1]
         print 'Updating score dictionary with base scores'
-        score_dict = add_scores(score_dict, 'base', y_val, predicts, predict_probs)
+        score_dict = add_scores(score_dict, 'base',
+                                y_val, predicts, predict_probs)
 
         # isotonic
         print 'Fitting isotonic calibration'
-        iso = CalibratedClassifierCV(model, method='isotonic', cv=3)
-        iso.fit(X_train, y_train)
-        iso_preds = iso.predict(X_val)
+        iso = calibration._CalibratedClassifier(model, method='isotonic')
+        iso.fit(X_training, y_training)
         iso_probs = iso.predict_proba(X_val)[:, 1]
+        iso_preds = iso_probs > 0.5
         print 'updating score dict w/ isotonic scores'
-        score_dict = add_scores(score_dict, 'isotonic', y_val, iso_preds, iso_probs)
+        score_dict = add_scores(score_dict, 'isotonic',
+                                y_val, iso_preds, iso_probs)
 
         # sigmoid / Platt Scaling
         print 'Fitting sigmoidal calibration'
-        sigmoid = CalibratedClassifierCV(model, method='sigmoid', cv=3)
-        sigmoid.fit(X_train, y_train)
+        sigmoid = calibration._CalibratedClassifier(model, method='sigmoid')
+        sigmoid.fit(X_training, y_training)
         sigmoid_preds = sigmoid.predict(X_val)
         sigmoid_probs = sigmoid.predict_proba(X_val)[:, 1]
         print 'updating score dict w/ sigmoid scores'
-        score_dict = add_scores(score_dict, 'sigmoidal', y_val, sigmoid_preds, sigmoid_probs)
+        score_dict = add_scores(score_dict, 'sigmoidal',
+                                y_val, sigmoid_preds, sigmoid_probs)
 
 
     return score_dict
@@ -128,77 +133,32 @@ if __name__ == '__main__':
 
     df = pd.read_csv('data/masterdf_20170920.csv', low_memory=False)
 
-    ### TESTING
-
-    # df.columns
-    # target_col = 'Incident_Cat'
-    # df[target_col].notnull().sum()
-    # len(df)
-    # # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
-    # #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
-    # #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age']
-    #
-    # quant_cols =['Num_Bathrooms', 'Num_Bedrooms',
-    #        'Num_Rooms', 'Num_Stories', 'Num_Units', 'Land_Value',
-    #        'Property_Area', 'Assessed_Improvement_Val', 'Tot_Rooms' ,'age', 'Incident_Cat']
-    # cat_cols = ['Building_Cat','Neighborhood']
-    #
-    # # feature engineering
-    # df['age'] = 2016 - df['Yr_Property_Built']
-    #
-    # # dummification
-    # dummies = pd.get_dummies(df[cat_cols], drop_first=False)
-    #
-    # # target creation
-    # df[target_col] = df[target_col].notnull()
-    # y = df.pop(target_col)
-    #
-    # # final df
-    # df = df.loc[:, quant_cols]
-    # df_final = pd.concat([df, dummies], axis=1)
-    #
-    # for col in df_final.columns:
-    #     print col
-    #
-    # df_final[target_col].sum()
-    # mask = df_final[target_col] == 0
-    # 119220 * 1.0 / len(df_final[mask])
-    # df_final.groupby([target_col, 'Num_Bathrooms']).size()
-    # df_final.groupby([target_col, 'Num_Bedrooms']).size()
-    #
-    #
-
-    ### TESTING
-
     y, X = data_preprocessing(df)
-    y.sum()
-    len(y)
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, test_size=0.33)
-    X_train = X_train.reset_index().values
-    X_test = X_test.reset_index().values
+    X_train, X_test, y_train, y_test = train_test_split(X, y,
+                                                        test_size=0.33,
+                                                        random_state=42)
+    X_train = X_train.reset_index().values[:, 1:] #removes added col
+    X_test = X_test.reset_index().values[:, 1:]
     y_train = y_train.values
     y_test = y_test.values
 
     # can change model to anything
+    # TODO make this take any model?
+    # TODO define use case for this
+
     rf = RandomForestClassifier(n_estimators=10, n_jobs=3)
-    logit = LogisticRegression()
     pipe = Pipeline([('scaler', StandardScaler()),
                      ('model', rf)])
 
+    # Create dictionary of scores w/ and w/o probability calibration
     score_dict = prob_calibration_cross_val(pipe, X_train, y_train)
 
     # fit rf to whole data, score, print feature importances
     # TODO functionalize, shouldn't be using test set yet
-
     pipe.fit(X_train, y_train)
-    test_score = pipe.score(X_test, y_test)
-    print '\n\n'
-    print 'test_score: {}'.format(test_score)
-
     feat_imp = pipe.named_steps['model'].feature_importances_
     cols = X.columns
-
     col_fi = sorted(zip(cols, feat_imp), key = lambda x: x[1])
 
     print '\n\n'
@@ -211,10 +171,6 @@ if __name__ == '__main__':
     # TODO create calibration set
     # TODO functionalize
     # TODO move to different script
-
-
-
-
 
     plt.figure(figsize=(12,8))
     # base probs
@@ -258,7 +214,7 @@ if __name__ == '__main__':
 
     score_dict = add_scores(score_dict, 'base', y_test, base_pred, base_probs)
     score_dict = add_scores(score_dict, 'sigmoidal', y_test, sigmoid_preds, sigmoid_probs)
-    score_dict =  add_scores(score_dict, 'isotonic', y_test, iso_preds, iso_probs)
+    score_dict = add_scores(score_dict, 'isotonic', y_test, iso_preds, iso_probs)
 
     for key, value in score_dict.iteritems():
         print key, value
@@ -267,3 +223,14 @@ if __name__ == '__main__':
 
     print '\n\n'
     print 'script finished'
+    df.columns
+
+    ### ADDING SIGMOID PROBS
+    # TODO  functionalize
+
+    all_sigmoid_probs = sigmoid.predict_proba(X)[:, 1]
+    df['calibrated_probs'] = all_sigmoid_probs
+    df.drop_duplicates(subset=['EAS'], inplace=True)
+    len(df)
+    df.to_csv('master_0920_calibrated_no_dupes.csv')
+    
