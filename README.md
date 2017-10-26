@@ -2,6 +2,7 @@
 This project is a part of the [Data Science Working Group](http://datascience.codeforsanfrancisco.org) at [Code for San Francisco](http://www.codeforsanfrancisco.org).  Other DSWG projects can be found at the [main GitHub repo](https://github.com/sfbrigade/data-science-wg).
 
 #### Project Status: Active
+#### Current Model's Average F1 Score: 0.67
 
 ## Project Intro/Objective
 This project attempts to model and acquire data from SF OpenData - and other sources - to predict the relative risk of fire in San Francisco’s buildings and public spaces.
@@ -57,18 +58,16 @@ SF Fire Risk Attribute Sheet
 [CartoDB Visual Mock-Up](https://sheffieldhale.carto.com/viz/c4d9c6b4-35f9-11e7-bb67-0e3a376473ab/public_map)
 ## Contributing DSWG Members
 
-**Team Lead: Ryan Tanaka (@ryangtanaka)**
-
-**Other Members**
-
-| Name          | Slack Handle   |
-|---------------|----------------|
-| Kel Yip       | @yamariva2000  |
-| Seward Lee    | @sewardlee337  |
-| Kenny Durell  | @kennyd        |
-| Sam Williams  | @swilliams2099 |
-| Kevin Stahler | @stahlerk      |
-| Yuzhe Chen    | @yzxchn        |
+| Name          | Slack Handle   | Role                            | Website                       |
+|---------------|----------------|---------------------------------|-------------------------------|
+| Ryan Tanaka   | @ryangtanaka   | Product Manager, Team Lead      | http://product.ryangtanka.com | 
+| Kel Yip       | @yamariva2000  | Data Scientist, Technical Lead  |                               |
+| Seward Lee    | @sewardlee337  | Data Scientist                  | http://www.sewardlee.com      |
+| Kenny Durell  | @kennyd        | Data Scientist                  |                               |
+| Sam Williams  | @swilliams2099 | Research, Outreach              |                               |
+| Kevin Stahler | @stahlerk      | Data Scientist                  |                               |
+| Yuzhe Chen    | @yzxchn        | Data Scientist                  |                               |
+| Chris Quiambao| @ccquiambao    | Data Scientist                  | https://github.com/ccquiambao | 
 
 ## Contact
 * If you haven't joined the SF Brigade Slack, [you can do that here](http://c4sf.me/slack).  
