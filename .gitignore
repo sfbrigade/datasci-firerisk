@@ -1,2 +1,6 @@
+.DS_Store
+.ipynb_checkpoints/
+PredictiveModeling.ipynb
 node_modules/
-
+data/
+research/
