@@ -43,8 +43,6 @@ This project is modeled after Data Science for Social Good's (DSSG) Firebird Pro
 5. Hack away! :) 
 
 ## Additional Documentation
-The main documentation for this project can be found here (this doc should be the most up to date): 
-[Main Google Docs Documentation](https://docs.google.com/document/d/1yLQrG6fyxGw2z1n9ikM---qfl7bAh7MoZ2DOMosu_NU/edit)
 
 Our workflow chart is here: 
 [SF Fire Risk Workflow](https://docs.google.com/drawings/d/1ASvsFydQ9P6UWRNJqKOwI66rKG8koE4wKACBpGYAO_4/edit)
