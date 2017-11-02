@@ -1,2 +1,8 @@
+.DS_Store
+.ipynb_checkpoints/
+PredictiveModeling.ipynb
 node_modules/
-
+data/
+research/
+nearest_fire_station/private_keys/
+json_dumps/
