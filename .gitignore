@@ -5,4 +5,7 @@ node_modules/
 data/
 research/
 nearest_fire_station/private_keys/
+nearest_fire_station/osrm/
+nearest_fire_station/nearest_fire_station.ipynb
 json_dumps/
+.gitignore

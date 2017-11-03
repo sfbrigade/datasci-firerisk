@@ -9,7 +9,7 @@ import cPickle as pickle
 import sys
 
 DATA_URL = '../data/' 
-NEW_FILE_NAME = 'masterdf_201710230_andirs.csv'
+NEW_FILE_NAME = 'masterdf_20171101_andirs.csv'
 
 with open('private_keys/google_api_key', 'rb') as handle:
     GOOGLE_API_KEY = handle.readline()

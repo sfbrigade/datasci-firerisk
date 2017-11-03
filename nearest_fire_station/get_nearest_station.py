@@ -146,9 +146,9 @@ def main():
     # I renamed the Google Drive Folder to /data/ in my repo - access will change once moving to database
     timestamp = get_timestamp()
     DATA_URL = '../data/' 
-    FIRE_STATIONS_DATA = 'fire_stations_{}_andirs.csv'.format(timestamp)
+    FIRE_STATIONS_DATA = 'fire_stations.csv'
     MASTER_FILE_NAME = 'masterdf_20170920.csv' # change this to recent
-    NEW_FILE_NAME = 'nearest_fire_station_{}_andirs.csv'.format(timestamp)
+    NEW_FILE_NAME = 'eas_haversine_distance.csv'
     FIRE_STATION_URL = "http://sf-fire.org/fire-station-locations"
     recompute = False
     global fire_station_address_dict
