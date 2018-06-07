@@ -13,7 +13,7 @@ def join_data_on_address_GPS(radius=40, df=None):
     # uses Addresses_-_Enterprise_Addressing_System.csv' as the reference address table
     # df is the table to be linked by closest lon/lat and address.
     # returns data frame of matched EAS, Address in EAS, and Match Score
-    reference = pd.read_csv('./SF-FireRisk_Enterprise-Addressing-System-Addresses.csv')
+    reference = pd.read_csv('./raw_data/Addresses_-_Enterprise_Addressing_System.csv')
     
     # remove nulls to avoid errors
     reference.Address.fillna("0", inplace=True)
