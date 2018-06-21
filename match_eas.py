@@ -9,7 +9,9 @@ from sklearn.neighbors import BallTree
 pd.set_option("display.max_columns", 101)
 
 
-def join_data_on_address_GPS(radius=40, df=None):
+def join_data_on_address_GPS(df):
+
+    radius = 40
     # uses Addresses_-_Enterprise_Addressing_System.csv' as the reference address table
     # df is the table to be linked by closest lon/lat and address.
     # returns data frame of matched EAS, Address in EAS, and Match Score
@@ -22,8 +24,8 @@ def join_data_on_address_GPS(radius=40, df=None):
     reference['LonRad'] = reference['Longitude'].apply(math.radians)
     reference['LatRad'] = reference['Latitude'].apply(math.radians)
 
-    if 'Permit Address' in df.columns:
-        df.rename(columns={'Permit Address': 'Address'}, inplace=True)
+    # if 'Permit Address' in df.columns:
+    #     df.rename(columns={'Permit Address': 'Address'}, inplace=True)
 
     class r_closest_EAS(BallTree):
         # given an address and lon/lat in the data, uses the Balltree to find the closest lon/lat locations in the EAS reference table.
@@ -75,7 +77,10 @@ def join_data_on_address_GPS(radius=40, df=None):
     eas_match = df.apply(
         lambda cols: k.search_around(cols['LonRad'], cols['LatRad'], cols['Address'], radius=r_radians), axis=1)
 
+    eas_match.name ='EAS'
+
     # return original df with eas codes and addresses merged
+    # function is adding extra rows
     def unpack_and_merge(df, eas_series, fillna=None):
         ret = pd.concat([df, pd.DataFrame(d for idx, d in eas_series.iteritems())], axis=1)
         ret.drop(['Address', 'LonRad', 'LatRad'], axis=1, inplace=True)
@@ -83,4 +88,8 @@ def join_data_on_address_GPS(radius=40, df=None):
         return ret
     
     #return match dataframe
-    return unpack_and_merge(df, eas_match)
+    eas = eas_match.apply(lambda x:x['EAS'])
+    address = eas_match.apply(lambda x:x['Address_match'])
+    address.name = 'address'
+    df = pd.concat([df,eas,address],axis=1)
+    return df
